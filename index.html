@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Racing Club de Santander</title>
+
+    <!-- Preload de imágenes -->
+    <link rel="preload" href="https://i.imgur.com/KkiJPhr.jpeg" as="image">
+    <link rel="preload" href="https://i.imgur.com/MhXvRvF.jpeg" as="image">
+    <link rel="preload" href="https://i.imgur.com/qfdhjNu.jpeg" as="image">
+<link rel="icon" href="https://i.imgur.com/qkiiv0u.png" type="image/png">
+<link rel="stylesheet" href="../Pre-Loader-main/style.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #004225;
+            justify-content: center;
+            border-bottom: 2px solid #ffffff;
+        }
+        .navbar-brand img {
+            width: 60px;
+        }
+        .navbar-nav {
+            margin: auto;
+        }
+        .navbar-nav .nav-item {
+            position: relative;
+            margin: 0 10px;
+            padding-bottom: 5px;
+            transition: all 0.3s ease;
+        }
+
+        /* Subrayado al pasar el mouse */
+        .navbar-nav .nav-item::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            left: 50%;
+            bottom: 0;
+            background-color: #ffffff;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .navbar-nav .nav-item:hover::after {
+            width: 100%;
+        }
+
+        .navbar-nav .nav-link {
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 0 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #dcdcdc;
+        }
+
+        /* Carousel */
+        .carousel-inner {
+            position: relative;
+            width: 100%;
+            height: 85vh;
+            overflow: hidden;
+        }
+
+        /* Crossfade suave para transición */
+        .carousel-fade .carousel-item {
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .carousel-fade .carousel-item.active {
+            opacity: 1;
+            z-index: 2;
+        }
+
+        .carousel-item {
+            height: 85vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Centrado del texto y botón */
+        .carousel-item .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+        .carousel-item h1, .carousel-item p {
+            color: white;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            margin-bottom: 10px;
+            width: fit-content;
+            max-width: 90%;
+        }
+        .carousel-item p {
+            font-size: 1.4rem;
+        }
+        .carousel-item button {
+            background-color: #004225;
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 50px;
+            transition: background-color 0.3s ease;
+        }
+        .carousel-item button:hover {
+            background-color: #002914;
+        }
+
+        /* Flechas de control */
+        .carousel-control-prev,
+        .carousel-control-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 5%;
+            opacity: 1; /* Siempre visibles */
+            z-index: 10; /* Asegura que están sobre las imágenes */
+        }
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+        }
+
+        /* Indicadores (barras/puntos de desplazamiento) */
+        .carousel-indicators {
+            bottom: 20px; /* Asegura que estén visibles */
+            z-index: 10; /* Siempre sobre las imágenes */
+        }
+        .carousel-indicators [data-bs-target] {
+            background-color: #004225;
+            opacity: 1; /* Asegura que se vean */
+        }
+        .carousel-indicators .active {
+            background-color: #ffffff;
+            opacity: 1; /* Para que el activo sea siempre visible */
+        }
+
+        /* Footer styling */
+        .footer {
+            background-color: #004225;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: auto;
+            border-top: 2px solid #ffffff;
+        }
+        .footer-sections {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            text-align: left;
+        }
+        .footer-section h5 {
+            text-transform: uppercase;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+        .footer-section a {
+            color: #dcdcdc;
+            text-decoration: none;
+            margin: 5px 0;
+            transition: color 0.3s;
+        }
+        .footer-section a:hover {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    
+    <script src="script.js"></script>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+          <img src="./img/racingsantander.png" alt="Real Racing Club">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
+				  <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tienda.html">Tienda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="entradas.html">Entradas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="fichajes.html">Fichajes</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Slider -->
+    <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="8000" data-bs-pause="false">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div  class="carousel-item active equipacion"style="background-image: url('https://statics-maker.llt-services.com/rac/images/2023/12/21/original/6998bb92-8287-41c5-bdf0-a55d3873e273-287.jpg');  background-size: cover; background-position: center;">
+                <div class="container">
+                    <h1>¡Compra la nueva camiseta oficial!</h1>
+                    <p>Aprovecha las ofertas de la tienda oficial.</p>
+                    <button onclick="window.location.href='tienda.html'">Ver más</button>
+                </div>
+            </div>
+            <div class="carousel-item entradas" style="background-image: url('https://lh3.googleusercontent.com/p/AF1QipMQBtOAXDhrRbEiqY4Wx_0buAA8Cb6nwNbZUGyb=s680-w680-h510-rw'); background-size: cover; background-position: center;">
+                <div class="container">
+                    <h1>Entradas disponibles</h1>
+                    <p>Compra tus entradas para el próximo partido del Racing.</p>
+                    <button onclick="window.location.href='entradas.html'">Comprar entradas</button>
+                </div>
+            </div>
+            <div class="carousel-item fichajes" style="background-image: url('https://statics-maker.llt-services.com/rac/images/2024/08/30/original/3965672e-4dc6-4542-aebd-1687ab3829da-460.jpg'); background-size: cover; background-position: center;">
+                <div class="container">
+                    <h1>Fichajes</h1>
+                    <p>Descubre los nuevos jugadores que se han unido al equipo.</p>
+                    <button onclick="window.location.href='fichajes.html'">Conocer más</button>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+        </button>
+    </div>
+
+     <!-- Footer -->
+     <footer class="footer">
+        <div class="footer-sections">
+            <div class="footer-section">
+                <h5>Acerca de Nosotros</h5>
+                <a href="https://es.wikipedia.org/wiki/Historia_del_Real_Racing_Club_de_Santander" target="_blank">Historia Del Club</a>
+            </div>
+            <div class="footer-section">
+                <h5>Enlaces Rápidos</h5>
+                <a href="./tienda.html" >Tienda</a>
+                <a href="./entradas.html">Entradas</a>
+                <a href="./fichajes.html">Fichajes</a>
+            </div>
+            <div class="footer-section">
+                <h5>Contacto</h5>
+                <a href="#">Dirección:C/ Real Racing Club, s/n, 39005 Santander, Cantabria</a>
+                <br>
+                <a href="#">Teléfono:942 28 28 28</a>
+                <br>
+                <a href="#">Email:oficinas@realracingclub.es</a>
+            </div>
+        </div>
+        <p>&copy; 2024 Real Racing Club de Santander. Todos los derechos reservados.</p>
+    </footer>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="../Pre-Loader-main/script.js"></script>
+</body>
+</html>
